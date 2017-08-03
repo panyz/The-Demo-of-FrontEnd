@@ -1,0 +1,22 @@
+body{
+    width: 350px;
+}
+
+label{
+    font-weight: bold;
+}
+
+div{
+    padding-bottom: 20px;
+}
+
+input[type='text']{
+    padding: 5px;
+    width: 150px;
+}
+
+p{
+    background: #ffc125;
+    padding:10px;
+    visibility: hidden;
+}
