@@ -22,7 +22,7 @@ window.onload = function () {
         var ZItem = randomValueFromArray(insertZ);
 
         newResult = newResult.replace(":insertx:", XItem);
-        newResult = newResult.replace(":insertx:", XItem);        
+        newResult = newResult.replace(":insertx:", XItem);
         newResult = newResult.replace(":inserty:", YItem);
         newResult = newResult.replace(":insertz:", ZItem);
 
@@ -34,7 +34,7 @@ window.onload = function () {
         if (document.getElementById('UK').checked) {
             var weight = Math.round(300 * 0.0714286) + 'stone';
             var temperature = Math.round((94 - 32) * 5 / 9) + 'centigrade';
-            newResult = newResult.replace('94 fareheit'.temperature);
+            newResult = newResult.replace('94 fareheit', temperature);
             newResult = newResult.replace('300 pounds', weight);
         }
         console.log(newResult);
