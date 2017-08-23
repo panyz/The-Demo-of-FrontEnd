@@ -1,14 +1,14 @@
-body{
-    width:50%;
+body {
+    width: 50%;
     max-width: 800px;
     min-width: 480px;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-.lastResult{
+.lastResult {
     color: white;
 }
