@@ -1,0 +1,33 @@
+.title{
+    text-align: center;
+}
+
+button {
+    float: right;
+    margin-right: 10px;
+}
+
+.input-wrapper{
+    width: 65%;
+}
+
+.date{
+    width:25%;
+    margin-left: 2%;
+}
+
+.time{
+    width: 15%;
+    margin-left: 2%;
+}
+
+.bar{
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+span{
+    cursor: pointer;
+    margin-left: 10px;
+    color: #198be5;
+}
