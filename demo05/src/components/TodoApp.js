@@ -11,10 +11,18 @@ export default class TodoApp extends Component {
     constructor() {
         super();
         //设置初始状态
-        this.state = {
+        this.state = this._loadData()||{
             todos: [], //存储备忘列表
             filter: '全部', //存储当前的过滤字段
             order: 'time' //存储当前的排序字段
+        };
+    }
+
+    _loadData = ()=>{
+        try{
+            return JSON.parse(window.localStorage.getItem('todos'));
+        } catch(e){
+            return null;
         }
     }
 
@@ -25,8 +33,25 @@ export default class TodoApp extends Component {
         });
     }
 
-    _handleAdd = (text, date, time) => {
+    _saveData = (data)=>{
+        try{
+            window.localStorage.setItem('todos',JSON.stringify(data));
+        } catch(e){
 
+        }
+    }
+
+    /*添加备忘录 */
+    _handleAdd = (text, date, time) => {
+        //setState是异步的，在设置state完成后存储当前的state
+        this.setState({
+            todos: this.state.todos.concat([{
+                color:'#fffff',
+                text,
+                time:date+' '+time,
+                done:false
+            }])
+        },()=>this._saveData(this.state));
     }
 
     _handleStateToggle = () => {
@@ -38,7 +63,15 @@ export default class TodoApp extends Component {
     }
 
     _handleDelete = () => {
-        
+
+    }
+
+    _handleChangeOrder = ()=>{
+
+    }
+
+    _handleChangeFilter = ()=>{
+
     }
 
     render() {
@@ -48,7 +81,8 @@ export default class TodoApp extends Component {
         }), this.state.order);
         return (
             <div className='todo-app'>
-                <Header onClickAdd={this._handleAdd} />
+                <Header onClickAdd={this._handleAdd} onChangeOrder={this._handleChangeOrder}
+                    onChangeFilter={this._handleChangeFilter} />
                 <TodoList title={filter} items={items} onToggleState={this._handleStateToggle}
                     onChangeColor={this._handleColorChange} onDelete={this._handleDelete} />
             </div>
