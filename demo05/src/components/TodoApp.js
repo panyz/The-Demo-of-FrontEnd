@@ -18,6 +18,7 @@ export default class TodoApp extends Component {
         };
     }
 
+    /*加载数据 */
     _loadData = ()=>{
         try{
             return JSON.parse(window.localStorage.getItem('todos'));
@@ -26,19 +27,20 @@ export default class TodoApp extends Component {
         }
     }
 
-    /** 根据数据元素的某个属性对数组进行排序 */
-    _sortArryByProp = (arr, prop, reverse = false) => {
-        return arr.sort((a, b) => {
-            return reverse ? a[prop] > b[prop] : a[prop] < b[prop];
-        });
-    }
-
+    /**保存数据 */
     _saveData = (data)=>{
         try{
             window.localStorage.setItem('todos',JSON.stringify(data));
         } catch(e){
 
         }
+    }
+
+    /** 根据数据元素的某个属性对数组进行排序 */
+    _sortArryByProp = (arr, prop, reverse = false) => {
+        return arr.sort((a, b) => {
+            return reverse ? a[prop] > b[prop] : a[prop] < b[prop];
+        });
     }
 
     /*添加备忘录 */
@@ -54,24 +56,39 @@ export default class TodoApp extends Component {
         },()=>this._saveData(this.state));
     }
 
-    _handleStateToggle = () => {
+    /**切换备忘状态 */
+    _handleStateToggle = (memo) => {
+        memo.done = !memo.done;
+        this.setState({
 
+        },()=>this._saveData(this.state));
     }
 
-    _handleColorChange = () => {
-
+    _handleColorChange = (memo,color) => {
+        memo.color = color;
+        this.setState({},()=>this._saveData(this.state));
     }
 
-    _handleDelete = () => {
-
+    _handleDelete = (memo) => {
+        let todos = this.state.todos;
+        todos.splice(todos.indexOf(memo),1);
+        this.setState({
+            todos:todos
+        },()=>this._saveData(this.state));
     }
 
-    _handleChangeOrder = ()=>{
-
+    /**根据指定字段对列表进行排序 */
+    _handleChangeOrder = (field)=>{
+        this.setState({
+            order: field
+        },()=>this._saveData(this.state));
     }
 
-    _handleChangeFilter = ()=>{
-
+    /**根据状态对列表进行排序 */
+    _handleChangeFilter = (filter)=>{
+        this.setState({
+            filter:filter
+        },()=>this._saveData(this.state));
     }
 
     render() {

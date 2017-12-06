@@ -32,7 +32,7 @@ export default class Header extends Component {
     /*点击添加时的处理函数 */
     _handleAdd = ()=>{
         this.props.onClickAdd(this.state.value,this.state.date,this.state.time);
-        this.setState(this.getInitialValues);
+        this.setState(this._getInitialValues);
     }
 
     /*备忘录内容变更时的处理函数 */
