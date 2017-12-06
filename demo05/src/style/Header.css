@@ -5,6 +5,10 @@
 button {
     float: right;
     margin-right: 10px;
+    background-color: #198be5;
+    color: white;
+    border: solid 1px #198be5;
+    border-radius: 3px;
 }
 
 .input-wrapper{
